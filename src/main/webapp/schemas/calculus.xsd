@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://wse-bdovbysh.rhcloud.com/ws"
+           targetNamespace="http://wse-bdovbysh.rhcloud.com/ws"
+           elementFormDefault="qualified">
+
+    <xs:simpleType name="operationsEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="plus"/>
+            <xs:enumeration value="minus"/>
+            <xs:enumeration value="multiply"/>
+            <xs:enumeration value="divide"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:complexType name="calcRequestType">
+        <xs:sequence>
+            <xs:element name="first" type="xs:double"/>
+            <xs:element name="second" type="xs:double"/>
+            <xs:element name="operation" type="tns:operationsEnum"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="getCalcRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="tns:calcRequestType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCalcResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:double" name="result"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+</xs:schema>
